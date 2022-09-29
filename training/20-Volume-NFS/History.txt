@@ -1,0 +1,44 @@
+```
+043  mkdir 21-Volume-NFS
+ 1044  cd 21-Volume-NFS/
+ 1045  ls
+ 1046  vim 01-PV-Nfs.yaml
+ 1047  kubectl  apply -f 01-PV-Nfs.yaml
+ 1048  kubectl  get pv
+ 1049  vim 02-PVC.yaml
+ 1050  kubectl  apply -f 02-PVC.yaml
+ 1051  kubectl  get pvc
+ 1052  kubectl  get pv
+ 1053  kubectl  get pvc
+ 1054  ls
+ 1055  vim 02-Nfs-busybox.yaml
+ 1056  ls
+ 1057  mv 02-Nfs-busybox.yaml 03-Nfs-busybox.yaml
+ 1058  kubectl  apply -f 03-Nfs-busybox.yaml
+ 1059  kubectl  get pods
+ 1060  kubectl  delete -f ../20-Security-Context/
+ 1061  kubectl  get pods
+ 1062  kubectl  describe pod nfs-busybox-nmrn5
+ 1063  tail -f /exports/index.html
+ 1064  ls
+ 1065  kubectl  delete -f 03-Nfs-busybox.yaml
+ 1066  tail -f /exports/index.html
+ 1067  ls
+ 1068  vim 04-Nginx-WebApp.yaml
+ 1069  kubectl  apply -f 04-Nginx-WebApp.yaml
+ 1070  kubectl  get pods
+ 1071  vim 05-Nginx-WebApp-Service.yaml
+ 1072  kubectl apply -f 05-Nginx-WebApp-Service.yaml
+ 1073  kubectl  get pods
+ 1074  kubectl  get svc
+ 1075  ls
+ 1076  vim 03-Nfs-busybox.yaml
+ 1077  kubectl  apply -f 03-Nfs-busybox.yaml
+ 1078  kubectl  get pods
+ 1079  kubectl delete pod --all
+ 1080  kubectl  get pods
+ 1081  ls
+ 1082  cd ..
+ 1083  ls
+ 1084  kubectl  delete -f 21-Volume-NFS/
+```
