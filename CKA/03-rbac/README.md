@@ -1,4 +1,4 @@
-# O3. Role Based Access Control (RBAC)
+# 03. Role Based Access Control (RBAC)
 
 This documentation provides imperative commands to manage kubernetes RBAC.
 
