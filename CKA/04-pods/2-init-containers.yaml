@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-init-pod
+  labels:
+    app: example-init-pod
+spec:
+  containers:
+    - name: main-service
+      image: nginx
+      resources:
+        limits:
+          cpu: "128m"
+          memory: "256Mi"
+      ports:
+        - containerPort: 80
+  initContainers:
+    - name: init-service
+      image: busybox
+      command: ["/bin/sh", "-c", "sleep 60"]
