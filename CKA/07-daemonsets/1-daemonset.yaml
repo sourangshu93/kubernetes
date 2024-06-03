@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: example-ds
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: fluentd
+  template:
+    matadata:
+      name: example-ds
+      labels:
+        app: fluentd
+    spec:
+      containers:
+        - name: fluentd-container
+          image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
+          volumeMounts:
+            - name: logpath
+              mountPath: /var/log
+      volumes:
+        - name: logpath
+          hostPath:
+            path: /var/log
