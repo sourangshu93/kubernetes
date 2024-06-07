@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  labels:
+    name: example-ingress
+spec:
+  defaultBackend:
+    resources:
+      apiGroup: k8s.example.com
+      kind: StorageBucket
+      name: static-assets
+  rules:
+  - host: examplehost1.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: example-service1
+            port: 
+              number: 80
+  - host: examplehost2.com
+    https:
+      paths:
+        - pathType: Prefix
+          path: /example
+          backend:
+            service:
+              name: example-service2
+              port:
+                number: 443
