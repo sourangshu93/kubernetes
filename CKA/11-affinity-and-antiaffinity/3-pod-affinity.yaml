@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+  labels:
+    app: frontend
+spec:
+  antiAffinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoreDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                  - Linux
+      preferredDuringSchedulingIgnoreDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+              - key: flavour
+                operator: In
+                values:
+                  - RedHat
+  containers:
+  - name: example-container
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi" 
+        cpu: "100m"
+    ports:
+      - containerPort: 80

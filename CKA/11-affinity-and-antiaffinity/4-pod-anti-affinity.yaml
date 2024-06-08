@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+  labels:
+    app: frontend
+spec:
+  antiAffinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                    - frontend
+            topologyKey: topology.kubernetes.io/zone
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - mismatchLabelKeys:
+            - tenant
+          labelSelector:
+            matchExpressions:
+              - key: tenant
+                operator: Exists
+          topologyKey: node-pool
+  containers:
+  - name: example-container
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi" 
+        cpu: "100m"
+    ports:
+      - containerPort: 80
