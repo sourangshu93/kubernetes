@@ -78,6 +78,7 @@ _____________________________________________________________________
 
 controlplane $ 
 ```
+
 ## Upgrade kubeadm
 ```
 controlplane $ apt-get install kubeadm=1.30.1-1.1
